@@ -1,0 +1,44 @@
+<link rel="stylesheet" type="text/css" href="/static/css/main.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="static/js/index.js"></script>
+<script>
+  $(document).ready(function(){
+    $("#target").on('submit',function(){
+        // alert("It works");
+    });
+  });
+</script>
+<!doctype html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<br>
+</head>
+<body>
+
+    <form id="target" method="post"  enctype="multipart/form-data">
+      <div name ="up" class="upload-btn-wrapper">
+        <button name="upload" class="btn">Upload CSV File</button>
+        <br>
+<br>
+<input type="file" id="file" value="go" name="file" onchange="$('#target').submit();"/>
+      </div>
+    </form>
+
+    <p>
+       {% with messages = get_flashed_messages(with_categories=true) %}
+         {% if messages %}
+          <div class=flashes>
+          {% for category_color, message in messages %}
+            <p class="error_text" style="color:{{ category_color }};width:500px;">{{ message }}</p>
+          {% endfor %}
+          </div>
+         {% endif %}
+       {% endwith %}
+    </p>
+<br><br>
+    ===> {{ csv_shape }}
+</body>
+</html>
